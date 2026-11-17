@@ -1,0 +1,14 @@
+GenomeFlow UI update
+
+Extract the entire ZIP first.
+First use: double-click INSTALL-ONCE.bat and wait for installation.
+Then double-click START-GenomeFlow.bat. Leave the terminal open while using the app.
+Requires Python installed with the Windows py launcher.
+
+Example: RNA-seq only, new project ID, requesting PI Demo PI.
+Upload examples/example.fastq and examples/samplesheet.csv together under RNA-seq.
+Synthetic / Synthetic origin confirmed / Approved / None confirmed clears the demo checks.
+Leave identifiers unresolved to demonstrate a governance hold.
+Expected: 2 reads, 8 bases, 75% Q30, 50% GC, 2 N bases.
+
+Only synthetic datasets are accepted. Live AI routing needs separate API configuration and remains unvalidated.

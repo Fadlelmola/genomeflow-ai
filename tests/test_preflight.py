@@ -27,6 +27,8 @@ class PreflightTests(unittest.TestCase):
                     settings[index] = value
                     ui = MagicMock()
                     ui.radio.return_value = mode
+                    ui.columns.return_value = [MagicMock(), MagicMock()]
+                    ui.multiselect.return_value = ["RNA-seq"]
                     ui.selectbox.side_effect = settings if mode == "Project upload" else ["RNA-seq", *settings]
                     ui.stop.side_effect = StopRun
                     with patch.dict("sys.modules", streamlit=ui), patch(processor) as process:

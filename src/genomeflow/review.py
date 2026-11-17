@@ -7,7 +7,7 @@ from src.genomeflow.agent import TOOLS, UnsupportedQuestion, lookup, select_tool
 
 
 def show():
-    st.header("QC review")
+    st.header("Review sequencing quality")
     st.caption("Upload the GenomeFlow QC export. Choose one assay or sample for this review.")
     file = st.file_uploader("GenomeFlow QC CSV", type="csv")
     if not file:
@@ -31,8 +31,9 @@ def show():
         if sample is not None:
             rows = [r for r in rows if r["sample"] == sample]
         minimum = st.number_input("Project minimum Q30 (%) if specified", value=None, min_value=0., max_value=100.)
-        tool = st.selectbox("Local QC tool", TOOLS)
-        question = st.text_input("Optional API question (send question text only)")
+        labels = {"read_count": "Read count", "q30": "Base quality (Q30)", "readiness": "Compare with your Q30 threshold"}
+        tool = st.selectbox("What would you like to check?", TOOLS, format_func=lambda value: labels[value])
+        question = st.text_input("Optional AI question (question text only)")
         if st.button("Review selection"):
             if question.strip():
                 cache = st.session_state.setdefault("qc_routes", {})
@@ -49,7 +50,10 @@ def show():
                     st.info(str(error))
                     return
                 except Exception as error:
-                    st.warning(f"API routing unavailable ({type(error).__name__}). Using your selected local tool: {tool}.")
+                    if not os.getenv("OPENAI_API_KEY") or not os.getenv("OPENAI_MODEL"):
+                        st.warning("AI routing is not configured. Your selected local check will run instead. Local QC does not require an API key.")
+                    else:
+                        st.warning("AI routing could not complete. Your selected local check will run instead. Try again later or continue locally.")
             st.write(lookup(rows, tool, minimum))
     except (ValueError, TypeError, csv.Error) as error:
         st.error(str(error))

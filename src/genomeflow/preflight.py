@@ -16,8 +16,8 @@ def governance_agent(local_use, identifiers):
 def controls(ui):
     ui.caption("1. Consent Agent → 2. Data Governance Agent → 3. QC Agent")
     source = ui.selectbox("Dataset type", ["Select", "Synthetic", "Human or mixed", "Unknown"])
-    basis = ui.selectbox("Consent basis for this demo", ["Select", "Synthetic origin confirmed", "Unresolved"])
-    local = ui.selectbox("Local research processing approval", ["Select", "Approved", "Restricted"])
+    basis = ui.selectbox("Consent documentation status for this synthetic demo", ["Select", "Synthetic origin confirmed", "Unresolved"])
+    local = ui.selectbox("Data governance approval for local research", ["Select", "Approved", "Restricted"])
     identifiers = ui.selectbox("Personal identifiers in reads or metadata", ["Select", "None confirmed", "Present or unknown"])
     return source, basis, local, identifiers
 

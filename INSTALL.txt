@@ -1,0 +1,1 @@
+Replace app.py in your existing GenomeFlow-UI-Update folder. Keep the other project files. From PowerShell in that folder run railway.cmd up and select genomeflow. This update retains the mobile contrast changes and adds the copyright footer to both application modes.

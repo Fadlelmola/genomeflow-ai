@@ -32,7 +32,7 @@ def select_tool(question):
     from openai import OpenAI
     client = OpenAI(timeout=12, max_retries=2)
     response = client.responses.create(model=os.environ["OPENAI_MODEL"],
-        instructions="Choose the QC tool requested. Return exactly read_count, q30, or readiness. Return unsupported for any other request.",
+instructions="Return exactly one tool name: read_count for read or sample counts; q30 for the number or percentage of bases reaching Q30; readiness for whether or how many samples meet, pass, or fail a minimum Q30 threshold. Threshold questions must use readiness. Return unsupported for unrelated questions.",
         input=question, max_output_tokens=64, store=False)
     name = response.output_text.strip()
     if name == "unsupported":

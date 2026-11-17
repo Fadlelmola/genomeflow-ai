@@ -31,3 +31,6 @@ The offline suite covers sample-sheet matching, the synthetic FASTQ calculation,
 
 ## Demo: consent and governance before QC
 In Project upload or Single sample, select Synthetic and Synthetic origin confirmed. Choose Approved for local research processing. Leave the identifiers field unresolved for a blocked run, then choose None confirmed and submit again. The app displays the Consent Agent decision, then the Data Governance Agent decision, before the QC Agent processes any reads. Human or mixed datasets are outside this demo. These rules use operator declarations. They do not inspect consent documents or detect identifiers automatically.
+
+## Research interface update
+The interface now includes requesting PI, method selection, contextual upload instructions, a teal research header and result summary metrics. Use INSTALL-ONCE.bat then START-GenomeFlow.bat on Windows. Sample IDs are supplied in the per-method sample sheet. Consent and governance checks remain declaration-based and synthetic-only. Start processing with Check permissions and run QC. Live API validation is pending. Organization logos and a laboratory photograph are not included in this build.
